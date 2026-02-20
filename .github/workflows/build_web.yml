@@ -25,7 +25,7 @@ jobs:
     - name: Build Web
       run: |
         flutter build web --release \
-          --base-href "/elevator-call-app/" \
+          --base-href "/elevator-call-app2/" \
           --dart-define=FLUTTER_WEB_USE_SKIA=true
 
     - name: Deploy to gh-pages branch
