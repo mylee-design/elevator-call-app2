@@ -1,0 +1,50 @@
+name: elevator_call_app
+description: Flutter based elevator call app with QR scan and BLE communication
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # QR Code Scanning
+  mobile_scanner: ^3.6.1
+
+  # BLE Communication
+  flutter_blue_plus: ^1.32.0
+
+  # Permission Management
+  permission_handler: ^11.3.0
+
+  # State Management
+  provider: ^6.1.2
+
+  # Utility
+  cupertino_icons: ^1.0.6
+
+  # Web
+  universal_html: ^2.2.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
+
+  # fonts:
+  #   - family: NotoSansKR
+  #     fonts:
+  #       - asset: assets/fonts/NotoSansKR-Regular.otf
+  #       - asset: assets/fonts/NotoSansKR-Bold.otf
+  #         weight: 700

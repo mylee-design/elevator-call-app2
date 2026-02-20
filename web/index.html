@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="엘리베이터 QR/BLE 호출 앱">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="엘리베이터 호출">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Title -->
+  <title>엘리베이터 호출</title>
+
+  <!-- Web Bluetooth API 지원 브라우저 체크 -->
+  <script>
+    if (!navigator.bluetooth) {
+      console.warn('Web Bluetooth API is not supported in this browser. Please use Chrome or Edge.');
+    }
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1565C0;
+    }
+
+    .loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .browser-warning {
+      display: none;
+      background: #ff6b6b;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- 브라우저 경고 -->
+  <div id="browser-warning" class="browser-warning">
+    ⚠️ 이 앱은 Chrome 또는 Edge 브라우저에서만 정상 작동합니다.
+    Web Bluetooth API가 필요합니다.
+  </div>
+
+  <!-- 로딩 화면 -->
+  <div id="loading" class="loading">
+    <div class="loading-spinner"></div>
+    <div>엘리베이터 호출 앱 로딩중...</div>
+  </div>
+
+  <!-- Flutter 앱 -->
+  <script src="flutter_bootstrap.js" async></script>
+
+  <script>
+    // 브라우저 체크
+    window.onload = function() {
+      const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+      const isEdge = /Edg/.test(navigator.userAgent);
+
+      if (!isChrome && !isEdge) {
+        document.getElementById('browser-warning').style.display = 'block';
+      }
+
+      // 로딩 화면 제거
+      setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.display = 'none';
+        }
+      }, 3000);
+    };
+  </script>
+</body>
+</html>
