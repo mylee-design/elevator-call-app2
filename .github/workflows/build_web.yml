@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout
@@ -19,14 +21,28 @@ jobs:
         flutter-version: '3.24.0'
         channel: 'stable'
 
-    - name: Install dependencies
-      run: flutter pub get
+    - name: Flutter Doctor
+      run: flutter doctor -v
+
+    - name: Clean and Install dependencies
+      run: |
+        flutter clean
+        flutter pub get
+
+    - name: Analyze
+      run: flutter analyze || true
 
     - name: Build Web
-      run: flutter build web --release --base-href "/elevator-call-app2/"
+      run: |
+        flutter build web --release \
+          --base-href "/elevator-call-app2/" \
+          --no-tree-shake-icons
+      env:
+        CI: false
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build/web
+        force_orphan: true

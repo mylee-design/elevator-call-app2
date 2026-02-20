@@ -12,23 +12,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # QR Code Scanning
+  # QR Code Scanning - Web supported
   mobile_scanner: ^3.6.1
-
-  # BLE Communication
-  flutter_blue_plus: ^1.32.0
-
-  # Permission Management
-  permission_handler: ^11.3.0
 
   # State Management
   provider: ^6.1.2
 
   # Utility
   cupertino_icons: ^1.0.6
-
-  # Web
-  universal_html: ^2.2.4
 
 dev_dependencies:
   flutter_test:
@@ -37,14 +28,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-  # assets:
-  #   - assets/images/
-  #   - assets/icons/
-
-  # fonts:
-  #   - family: NotoSansKR
-  #     fonts:
-  #       - asset: assets/fonts/NotoSansKR-Regular.otf
-  #       - asset: assets/fonts/NotoSansKR-Bold.otf
-  #         weight: 700
